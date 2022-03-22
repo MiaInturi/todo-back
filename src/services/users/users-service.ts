@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 
-import { UserModel } from '../models/User';
-import { TokensService } from './tokens-service';
-import { ApiError } from '../errors/api-error/ApiError';
-import { UserDto } from '../dtos/UserDto';
+import { UserModel } from '../../models/User';
+import { TokensService } from '../tokens/tokens-service';
+import { ApiError } from '../../errors/api-error/ApiError';
+import { UserDto } from '../../dtos/UserDto';
 
 export class UsersService {
   public static async registration(nickname: string, password: string) {

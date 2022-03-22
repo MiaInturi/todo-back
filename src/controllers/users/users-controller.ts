@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator';
 
-import { UsersService } from '../../services/users-service';
+import { UsersService } from '../../services/users/users-service';
 import { ApiError } from '../../errors/api-error/ApiError';
 import { MILLISECONDS_IN_MINUTE, MILLISECONDS_IN_DAY, COOKIES_NAMES, SUCCESS_CODES } from '../../utils/constants';
 
@@ -9,10 +9,9 @@ export class UsersController {
   public static async registration(req: Request, res: Response, next: NextFunction) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(errors.array());
-      console.log(errors.array({ onlyFirstError: true }));
       const [validationError] = errors.array({ onlyFirstError: true });
       next(ApiError.createBadRequestError(validationError.msg));
+      return;
     }
 
     try {
