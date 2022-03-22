@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 
-import type { User } from '../models/User';
+import type { User } from '../../models/user/User';
 
 export class UserDto {
   private readonly id: string;

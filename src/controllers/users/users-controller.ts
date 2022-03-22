@@ -27,6 +27,21 @@ export class UsersController {
   }
 
   public static async login(req: Request, res: Response, next: NextFunction) {
-    throw ApiError.createBadRequestError();
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      next(ApiError.createBadRequestError('Incorrect username or password'));
+      return;
+    }
+
+    try {
+      const { nickname, password } = req.body as { nickname: string; password: string; };
+      const { user, accessToken, refreshToken } = await UsersService.login(nickname, password);
+
+      res.cookie(COOKIES_NAMES.ACCESS_TOKEN, accessToken, { maxAge: 30 * MILLISECONDS_IN_DAY, httpOnly: true });
+      res.cookie(COOKIES_NAMES.REFRESH_TOKEN, refreshToken, { maxAge: 15 * MILLISECONDS_IN_MINUTE, httpOnly: true });
+      res.status(SUCCESS_CODES.OK).json(user);
+    } catch (error) {
+      next(error);
+    }
   }
 }

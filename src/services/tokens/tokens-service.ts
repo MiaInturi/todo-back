@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { TokenModel } from '../../models/Token';
+import { TokenModel } from '../../models/token/Token';
 
 export class TokensService {
   public static generateTokens(userId: string) {

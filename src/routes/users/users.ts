@@ -6,4 +6,4 @@ import { getValidateForUsersController } from '../../controllers/users/users-val
 
 export const router: Router = new (RouterClass as any)();
 router.post('/registration', getValidateForUsersController('registration'), UsersController.registration);
-router.get('/login', UsersController.login);
+router.post('/login', getValidateForUsersController('login'), UsersController.login);

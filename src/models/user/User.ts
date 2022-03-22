@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { MODELS_NAMES } from '../utils/constants';
+import { MODELS_NAMES } from '../../utils/constants';
 
 const SchemaTypes = Schema.Types;
 
