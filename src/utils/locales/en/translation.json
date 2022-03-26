@@ -1,0 +1,15 @@
+{
+  "error.validation.required": "Field '{{parameter}}' is required",
+  "error.validation.notEmpty": "Field '{{parameter}}' should`t be empty",
+  "error.validation.isNumber": "Field '{{parameter}}' should be number",
+  "error.validation.isString": "Field '{{parameter}}' should be string",
+  "error.validation.minLength": "Field '{{parameter}}' min amount of characters is {{minLength}}",
+  "error.validation.maxLength": "Field '{{parameter}}' max amount of characters is {{maxLength}}",
+  "error.client.badRequest": "Bad parameters for request",
+  "error.client.badRequest.unknownMethod": "Unknown request method",
+  "error.client.unauthorized": "User is unauthorized",
+  "error.client.forbidden": "Request is forbidden",
+  "error.client.registration.nicknameAlreadyUsed": "Nickname '{{nickname}}' already used",
+  "error.client.login.incorrectLoginOrPassword": "Incorrect nickname or password",
+  "error.server.internal": "Internal server error, try again later"
+}
