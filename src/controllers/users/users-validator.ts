@@ -9,27 +9,51 @@ export const getValidateForUsersController = (usersControllerMethods: StaticMeth
     case 'login': {
       return [
         body('nickname')
-          .exists().withMessage('Параметр nickname является обязательным').bail()
-          .isString().withMessage('Параметр nickname должен быть строкой').bail()
-          .notEmpty().withMessage('Параметр nickname не должен быть пустым').bail()
-          // eslint-disable-next-line consistent-return
-          .isLength({ min: 4, max: 16 }).withMessage((value: string) => {
-            if (value.length < 4) return 'Параметр nickname должен содержать 4 или более символов';
-            if (value.length > 16) return 'Параметр nickname должен содержать 16 или менее символов';
+          .exists().withMessage({
+            messagePath: 'error.validation.required',
+            params: { parameter: 'nickname' },
+          }).bail()
+          .isString().withMessage({
+            messagePath: 'error.validation.isString',
+            params: { parameter: 'nickname' },
+          }).bail()
+          .notEmpty().withMessage({
+            messagePath: 'error.validation.notEmpty',
+            params: { parameter: 'nickname' },
+          }).bail()
+          .isLength({ min: 4 }).withMessage({
+            messagePath: 'error.validation.minLength',
+            params: { parameter: 'nickname', minLength: 4 },
+          }).bail()
+          .isLength({ max: 16 }).withMessage({
+            messagePath: 'error.validation.maxLength',
+            params: { parameter: 'nickname', maxLength: 16 },
           }),
         body('password')
-          .exists().withMessage('Параметр password является обязательным').bail()
-          .isString().withMessage('Параметр password должен быть строкой').bail()
-          .notEmpty().withMessage('Параметр password не должен быть пустым').bail()
-          // eslint-disable-next-line consistent-return
-          .isLength({ min: 4, max: 64 }).withMessage((value: string) => {
-            if (value.length < 4) return 'Параметр password должен содержать 4 или более символов';
-            if (value.length > 64) return 'Параметр password должен содержать 64 или менее символов';
+          .exists().withMessage({
+            messagePath: 'error.validation.required',
+            params: { parameter: 'password' },
+          }).bail()
+          .isString().withMessage({
+            messagePath: 'error.validation.isString',
+            params: { parameter: 'password' },
+          }).bail()
+          .notEmpty().withMessage({
+            messagePath: 'error.validation.notEmpty',
+            params: { parameter: 'password' },
+          }).bail()
+          .isLength({ min: 4 }).withMessage({
+            messagePath: 'error.validation.minLength',
+            params: { parameter: 'password', minLength: 4 },
+          }).bail()
+          .isLength({ max: 16 }).withMessage({
+            messagePath: 'error.validation.maxLength',
+            params: { parameter: 'password', maxLength: 16 },
           }),
       ];
     }
     default: {
-      throw ApiError.createBadRequestError('Ошибка - неизвестный запрос');
+      throw ApiError.createBadRequestError('error.client.badRequest.unknownMethod');
     }
   }
 };

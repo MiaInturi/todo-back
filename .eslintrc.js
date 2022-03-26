@@ -22,6 +22,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'newline-per-chained-call': 'off',
     'no-underscore-dangle': 'off',
+    'lines-between-class-members': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'import/prefer-default-export': 'off',
     'import/extensions': ['error', 'ignorePackages', { ts: 'never' }],

@@ -10,7 +10,8 @@ export class UsersController {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const [validationError] = errors.array({ onlyFirstError: true });
-      next(ApiError.createBadRequestError(validationError.msg));
+      const { messagePath, params } = validationError.msg;
+      next(ApiError.createBadRequestError(messagePath, params));
       return;
     }
 
@@ -29,7 +30,9 @@ export class UsersController {
   public static async login(req: Request, res: Response, next: NextFunction) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      next(ApiError.createBadRequestError('Incorrect username or password'));
+      const [validationError] = errors.array({ onlyFirstError: true });
+      const { messagePath, params } = validationError.msg;
+      next(ApiError.createBadRequestError(messagePath, params));
       return;
     }
 

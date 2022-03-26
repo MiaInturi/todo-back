@@ -1,7 +1,9 @@
 import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
+import i18nHttpMiddleware from 'i18next-http-middleware';
 
+import i18nextInstance from './utils/i18n/instance/instance';
 import { MiddlewareInjector } from './middlewares';
 import { applicationConnectError, mongooseRuntimeError, mongooseDisconnectError } from './utils/handlers/error/error';
 
@@ -12,6 +14,7 @@ const start = async () => {
     mongoose.connection.on('disconnected', mongooseDisconnectError);
 
     const app = express();
+    app.use(i18nHttpMiddleware.handle(i18nextInstance));
     MiddlewareInjector.addMiddlewares(app);
 
     app.listen(process.env.PORT, () => console.log(`start application on port ${process.env.PORT}`));

@@ -1,4 +1,4 @@
-type ValueOf<T> = T[keyof T]
+type ValueOf<T> = T[keyof T];
 type ClassType = { new(...args: any[]): any };
 
 // eslint-disable-next-line @typescript-eslint/ban-types

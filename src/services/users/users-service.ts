@@ -7,9 +7,8 @@ import { UserDto } from '../../dtos/user/UserDto';
 
 export class UsersService {
   public static async registration(nickname: string, password: string) {
-    // nickname is unique
     const isUserExist = await UserModel.exists({ nickname });
-    if (isUserExist) throw ApiError.createBadRequestError(`Nickname ${nickname} already used`);
+    if (isUserExist) throw ApiError.createBadRequestError('error.client.registration.nicknameAlreadyUsed', { nickname });
 
     const passwordHash = await bcrypt.hash(password, Number(process.env.PASSWORD_SALT_ROUNDS));
     const registrationTime = new Date().getTime();
@@ -24,10 +23,10 @@ export class UsersService {
 
   public static async login(nickname: string, password: string) {
     const user = await UserModel.findOne({ nickname });
-    if (!user) throw ApiError.createBadRequestError('Incorrect username or password');
+    if (!user) throw ApiError.createBadRequestError('error.client.login.incorrectLoginOrPassword');
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
-    if (!isPasswordCorrect) throw ApiError.createBadRequestError('Incorrect username or password');
+    if (!isPasswordCorrect) throw ApiError.createBadRequestError('error.client.login.incorrectLoginOrPassword');
 
     const userDto = new UserDto(user);
     const { accessToken, refreshToken } = TokensService.generateTokens(userDto.getId());

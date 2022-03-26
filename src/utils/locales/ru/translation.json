@@ -1,0 +1,15 @@
+{
+  "error.validation.required": "Поле '{{parameter}}' является обязательным",
+  "error.validation.notEmpty": "Поле '{{parameter}}' не должно быть пустым",
+  "error.validation.isNumber": "Поле '{{parameter}}' должно быть числом",
+  "error.validation.isString": "Поле '{{parameter}}' должно быть строкой",
+  "error.validation.minLength": "Поле '{{parameter}}' должно содержать не менее {{minLength}} символов",
+  "error.validation.maxLength": "Поле '{{parameter}}' должно содержать не более {{maxLength}} символов",
+  "error.client.badRequest": "Недействительные параметры запроса",
+  "error.client.badRequest.unknownMethod": "Неизвестный метод запроса",
+  "error.client.unauthorized": "Пользователь не авторизован",
+  "error.client.forbidden": "Недостаточно прав для выполнения запроса",
+  "error.client.registration.nicknameAlreadyUsed": "Имя пользователя '{{nickname}}' уже занятно",
+  "error.client.login.incorrectLoginOrPassword": "Неправильные имя пользователя или пароль",
+  "error.server.internal": "Внутренняя ошибка сервера, повторите операцию позже"
+}
