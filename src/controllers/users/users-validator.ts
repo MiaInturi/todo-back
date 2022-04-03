@@ -42,13 +42,13 @@ export const getValidateForUsersController = (usersControllerMethods: StaticMeth
             messagePath: 'error.validation.notEmpty',
             params: { parameter: 'password' },
           }).bail()
-          .isLength({ min: 4 }).withMessage({
+          .isLength({ min: 8 }).withMessage({
             messagePath: 'error.validation.minLength',
-            params: { parameter: 'password', minLength: 4 },
+            params: { parameter: 'password', minLength: 8 },
           }).bail()
-          .isLength({ max: 16 }).withMessage({
+          .isLength({ max: 32 }).withMessage({
             messagePath: 'error.validation.maxLength',
-            params: { parameter: 'password', maxLength: 16 },
+            params: { parameter: 'password', maxLength: 32 },
           }),
       ];
     }
