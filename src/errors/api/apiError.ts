@@ -1,13 +1,13 @@
-import { CLIENT_STATUSES, SERVER_STATUSES } from '../../utils/constants';
+import { CLIENT_STATUSES, SERVER_STATUSES } from '@utils/constants';
 
-type Status = ValueOf<typeof CLIENT_STATUSES> | ValueOf<typeof SERVER_STATUSES>;
+type ErrorStatus = ValueOf<typeof CLIENT_STATUSES> | ValueOf<typeof SERVER_STATUSES>;
 type ErrorParams = Record<string, string>;
 
 export class ApiError extends Error {
-  readonly status: Status;
+  readonly status: ErrorStatus;
   readonly errorParams: ErrorParams;
 
-  public constructor(status: Status, messagePath: string, errorParams?: ErrorParams) {
+  public constructor(status: ErrorStatus, messagePath: string, errorParams?: ErrorParams) {
     super(messagePath);
     this.name = this.constructor.name;
     this.status = status;

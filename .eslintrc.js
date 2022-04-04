@@ -1,4 +1,11 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    tsConfigRootDir: '.',
+    project: './tsconfig.json',
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
   env: {
     node: true,
     jest: true,
@@ -9,13 +16,9 @@ module.exports = {
     'airbnb-base',
     'plugin:@typescript-eslint/recommended',
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'es12',
-    sourceType: 'module',
-  },
   plugins: [
-    '@typescript-eslint',
+    '@typescript-eslint/eslint-plugin',
+    'import',
   ],
   rules: {
     'max-len': 'off',
@@ -29,9 +32,7 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      node: {
-        extensions: ['.ts'],
-      },
+      typescript: {},
     },
   },
 };
