@@ -19,9 +19,6 @@
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    ".eslintrc.js"
-  ],
+  "include": ["**/*.ts", ".eslintrc.js"],
   "exclude": ["node_modules"]
 }
