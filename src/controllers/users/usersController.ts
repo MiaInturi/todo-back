@@ -1,9 +1,9 @@
 import type { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator';
 
-import { UsersService } from '../../services/users/users-service';
-import { ApiError } from '../../errors/api-error/ApiError';
-import { MILLISECONDS_IN_MINUTE, MILLISECONDS_IN_DAY, COOKIES_NAMES, SUCCESS_CODES } from '../../utils/constants';
+import { UsersService } from '@services/users/usersService';
+import { ApiError } from '@errors/api/apiError';
+import { MILLISECONDS_IN_MINUTE, MILLISECONDS_IN_DAY, COOKIES_NAMES, SUCCESS_CODES } from '@utils/constants';
 
 export class UsersController {
   public static async registration(req: Request, res: Response, next: NextFunction) {

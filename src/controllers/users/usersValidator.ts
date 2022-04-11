@@ -1,7 +1,7 @@
 import { body } from 'express-validator';
 
-import { UsersController } from './users-controller';
-import { ApiError } from '../../errors/api-error/ApiError';
+import { UsersController } from '@controllers/users/usersController';
+import { ApiError } from '@errors/api/apiError';
 
 export const getValidateForUsersController = (usersControllerMethods: StaticMethods<typeof UsersController>) => {
   switch (usersControllerMethods) {

@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 
-import { ApiError } from '../../errors/api-error/ApiError';
-import { SERVER_STATUSES } from '../../utils/constants';
+import { ApiError } from '@errors/api/apiError';
+import { SERVER_STATUSES } from '@utils/constants';
 
 export const apiErrorMiddleware = (err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof ApiError) {
@@ -12,5 +12,5 @@ export const apiErrorMiddleware = (err: Error, req: Request, res: Response, next
 };
 
 export const failErrorMiddleware = (err: Error, req: Request, res: Response, next: NextFunction) => {
-  res.status(SERVER_STATUSES.INTERNAL_ERROR).json(req.t('error.server.internal'));
+  res.status(SERVER_STATUSES.INTERNAL_ERROR).json({ message: req.t('error.server.internal') });
 };

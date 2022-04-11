@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { TokenModel } from '../../models/token/Token';
+import { TokenModel } from '@models/token/Token';
 
 export class TokensService {
   public static generateTokens(userId: string) {
@@ -20,9 +20,5 @@ export class TokensService {
 
     const createdUserRefreshToken = await TokenModel.create({ user: userId, refreshToken });
     return createdUserRefreshToken;
-  }
-
-  public static async verifyToken(accessToken: string) {
-    const isAccessTokenValid = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
   }
 }

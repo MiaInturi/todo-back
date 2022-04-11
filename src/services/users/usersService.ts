@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 
-import { UserModel } from '../../models/user/User';
-import { TokensService } from '../tokens/tokens-service';
-import { ApiError } from '../../errors/api-error/ApiError';
-import { UserDto } from '../../dtos/user/UserDto';
+import { UserModel } from '@models/user/User';
+import { UserDto } from '@models/user/UserDto';
+import { TokensService } from '@services/tokens/tokensService';
+import { ApiError } from '@errors/api/apiError';
 
 export class UsersService {
   public static async registration(nickname: string, password: string) {
@@ -15,8 +15,8 @@ export class UsersService {
     const user = await UserModel.create({ nickname, password: passwordHash, registrationTime });
 
     const userDto = new UserDto(user);
-    const { accessToken, refreshToken } = TokensService.generateTokens(userDto.getId());
-    await TokensService.saveRefreshToken(userDto.getId(), refreshToken);
+    const { accessToken, refreshToken } = TokensService.generateTokens(userDto.id);
+    await TokensService.saveRefreshToken(userDto.id, refreshToken);
 
     return { user: userDto, accessToken, refreshToken };
   }
@@ -29,8 +29,8 @@ export class UsersService {
     if (!isPasswordCorrect) throw ApiError.createBadRequestError('error.client.login.incorrectLoginOrPassword');
 
     const userDto = new UserDto(user);
-    const { accessToken, refreshToken } = TokensService.generateTokens(userDto.getId());
-    await TokensService.saveRefreshToken(userDto.getId(), refreshToken);
+    const { accessToken, refreshToken } = TokensService.generateTokens(userDto.id);
+    await TokensService.saveRefreshToken(userDto.id, refreshToken);
 
     return { user: userDto, accessToken, refreshToken };
   }

@@ -1,7 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { MODELS_NAMES } from '../../utils/constants';
-
-const SchemaTypes = Schema.Types;
+import { MODELS_NAMES } from '@utils/constants';
 
 export interface User {
   nickname: string;
@@ -10,9 +8,9 @@ export interface User {
 }
 
 const UserSchema = new Schema({
-  nickname: { type: SchemaTypes.String, unique: true, required: true },
-  password: { type: SchemaTypes.String, required: true },
-  registrationTime: { type: SchemaTypes.Number, required: true },
+  nickname: { type: Schema.Types.String, unique: true, required: true },
+  password: { type: Schema.Types.String, required: true },
+  registrationTime: { type: Schema.Types.Number, required: true },
 });
 
 export const UserModel = model<User>(MODELS_NAMES.USER, UserSchema);

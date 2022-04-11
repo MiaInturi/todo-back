@@ -2,19 +2,18 @@ import type { Express } from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import i18nHttpMiddleware from 'i18next-http-middleware';
 
-import i18nextInstance from '../utils/i18n/instance/instance';
-import { router as usersRouter } from '../routes/users/users';
-import { apiErrorMiddleware, failErrorMiddleware } from './error/errorMiddleware';
+import { usersRouter } from '@routers/users/usersRouter';
+import { i18nMiddleware } from '@middlewares/i18n/i18nMiddleware';
+import { apiErrorMiddleware, failErrorMiddleware } from '@middlewares/error/errorMiddleware';
 
-export class MiddlewareInjector {
+export class MainMiddleware {
   private static addUtilsMiddlewares(app: Express) {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     app.use(cookieParser());
     app.use(cors());
-    app.use(i18nHttpMiddleware.handle(i18nextInstance));
+    app.use(i18nMiddleware);
   }
 
   private static addRouteMiddlewares(app: Express) {
@@ -27,8 +26,8 @@ export class MiddlewareInjector {
   }
 
   public static addMiddlewares(app: Express) {
-    MiddlewareInjector.addUtilsMiddlewares(app);
-    MiddlewareInjector.addRouteMiddlewares(app);
-    MiddlewareInjector.addErrorMiddlewares(app);
+    this.addUtilsMiddlewares(app);
+    this.addRouteMiddlewares(app);
+    this.addErrorMiddlewares(app);
   }
 }
